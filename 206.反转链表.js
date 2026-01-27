@@ -17,20 +17,16 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-    if (head === null || head.next === null) return head
-
-    let prev = null
-    let cur = head
-    while (cur) {
-        // 暂存下一个节点
-        const next = cur.next
-        // 反转指向
-        cur.next = prev
-        // 移动节点
-        prev = cur
-        cur = next
-    }
-    return prev
+  if (head === null || head.next === null) return head
+  let prev = null
+  let cur = head
+  while (cur !== null) {
+    const next = cur.next
+    cur.next = prev
+    prev = cur
+    cur = next
+  }
+  return prev
 };
 // @lc code=end
 
