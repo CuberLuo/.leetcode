@@ -10,6 +10,18 @@
  * @return {number}
  */
 var numIslands = function (grid) {
+  function setZero(i, j) {
+    // 超出边界或者遇到0则递归结束
+    if (grid[i] === undefined || grid[i][j] === undefined || grid[i][j] === '0') {
+      return
+    }
+    grid[i][j] = '0'
+    // 上下左右均置为0
+    setZero(i - 1, j)
+    setZero(i + 1, j)
+    setZero(i, j - 1)
+    setZero(i, j + 1)
+  }
   let cnt = 0
   // 深度优先搜索（DFS）
   for (let i = 0; i < grid.length; i++) {
@@ -23,19 +35,6 @@ var numIslands = function (grid) {
   }
   return cnt
 };
-
-function setZero(i, j, grid) {
-  // 超出边界或者遇到0则递归结束
-  if (grid[i] === undefined || grid[i][j] === undefined || grid[i][j] === '0') {
-    return
-  }
-  grid[i][j] = '0'
-  // 上下左右均置为0
-  setZero(i - 1, j, grid)
-  setZero(i + 1, j, grid)
-  setZero(i, j - 1, grid)
-  setZero(i, j + 1, grid)
-}
 // @lc code=end
 
 // const grid = [
