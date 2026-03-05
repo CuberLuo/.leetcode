@@ -11,18 +11,26 @@
  * @return {number[]}
  */
 var findAnagrams = function (s, p) {
-  // TODO:超时需优化
   if (p.length > s.length) return []
-  const sortStr = (str) => {
-    return str.split('').sort().join('')
+  const charToIndex = (ch) => {
+    return ch.charCodeAt() - 'a'.charCodeAt()
   }
   const result = []
-  for (let i = 0; i <= s.length - p.length; i++) {
-    const substr = s.slice(i, i + p.length)
-    if (sortStr(substr) === sortStr(p)) {
-      result.push(i)
-    }
+  const sCountList = new Array(26).fill(0)
+  const pCountList = new Array(26).fill(0)
+  // 统计当前窗口中每个字符出现的个数
+  for (let i = 0; i < p.length; i++) {
+    sCountList[charToIndex(s[i])]++
+    pCountList[charToIndex(p[i])]++
   }
+  if (sCountList.toString() === pCountList.toString()) result.push(0)
+  // 移动窗口
+  for (let i = 0; i < s.length - p.length; i++) {
+    sCountList[charToIndex(s[i])]--
+    sCountList[charToIndex(s[i + p.length])]++
+    if (sCountList.toString() === pCountList.toString()) result.push(i + 1)
+  }
+
   return result
 };
 // @lc code=end
