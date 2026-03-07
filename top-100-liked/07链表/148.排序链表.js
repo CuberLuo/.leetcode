@@ -34,16 +34,14 @@ var sortList = function (head) {
       return l2
     }
   }
-
-  let pA = head//慢指针，一次走一步
-  let pB = head//快指针，一次走两步
-  let prev = null//慢指针的前一个节点
+  let dummy = new ListNode(0, head)
+  let pA = dummy//慢指针，一次走一步
+  let pB = dummy//快指针，一次走两步
   while (pB !== null && pB.next !== null) {
-    prev = pA
     pA = pA.next
     pB = pB.next.next
   }
-  const mid = prev
+  const mid = pA
   const midNext = mid.next
   mid.next = null//链表一分为二
   const left = sortList(head)
