@@ -1,12 +1,13 @@
+/**
+ * @param {number[]} nums
+ * @returns {number[]}
+ */
 function quickSort(arr) {
   if (arr.length === 0) return arr
-
   const midIndex = Math.floor(arr.length / 2)
   const midValue = arr[midIndex]
-
   const left = []
   const right = []
-
   for (let i = 0; i < arr.length; i++) {
     if (i !== midIndex) {
       const num = arr[i]
