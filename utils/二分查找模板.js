@@ -4,6 +4,7 @@ function binSearch(arr, x) {
   let r = n;
 
   while (r - l > 1) {
+    // 防止溢出 js可以直接写Math.floor((l+r)/2)
     let mid = l + Math.floor((r - l) / 2);
     if (isGreen(arr[mid], x)) {
       r = mid;

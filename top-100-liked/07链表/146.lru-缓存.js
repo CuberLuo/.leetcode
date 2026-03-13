@@ -36,14 +36,14 @@ LRUCache.prototype.get = function (key) {
 LRUCache.prototype.put = function (key, value) {
   if (this.cache.has(key)) {
     this.cache.delete(key)
-    this.cache.set(key, value)
   } else {
-    this.cache.set(key, value)
-    if (this.cache.size > this.capacity) {
+    // 先检查缓存容量是否达到上限
+    if (this.cache.size >= this.capacity) {
       const oldKey = this.cache.keys().next().value
       this.cache.delete(oldKey)
     }
   }
+  this.cache.set(key, value)
 };
 
 /**
