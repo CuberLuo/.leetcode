@@ -18,8 +18,9 @@ var searchMatrix = function (matrix, target) {
     let mid = Math.floor((l + r) / 2)
     let rowIdx = Math.floor(mid / n)
     let colIdx = mid % n
-    if (matrix[rowIdx][colIdx] >= target) {
-      if (matrix[rowIdx][colIdx] === target) return true
+
+    if (matrix[rowIdx][colIdx] === target) return true
+    if (matrix[rowIdx][colIdx] > target) {
       r = mid
     } else {
       l = mid
