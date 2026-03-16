@@ -18,7 +18,7 @@ var permute = function (nums) {
       return
     }
     for (let i = 0; i < nums.length; i++) {
-      if (path.includes(nums[i])) continue
+      if (path.includes(nums[i])) continue//剪枝
       path.push(nums[i])
       backtrack(path)
       path.pop()//移除最后一个元素进行回溯
@@ -29,3 +29,5 @@ var permute = function (nums) {
 };
 // @lc code=end
 
+const nums = [1, 2, 3]
+permute(nums)
