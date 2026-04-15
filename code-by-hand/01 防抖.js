@@ -10,3 +10,16 @@ function debounce(fn, delay) {
     }, delay)
   }
 }
+
+function testFn() {
+  console.log('test')
+}
+
+const debounceFn = debounce(testFn, 3000) //抖完三秒后触发
+
+let cnt = 0
+const interval = setInterval(() => {
+  console.log(cnt++)
+  debounceFn()
+  if (cnt >= 10) clearInterval(interval)
+}, 100)

@@ -4,3 +4,12 @@ Function.prototype.myBind = function (ctx, ...args) {
     fn.apply(ctx, [...args, ...Array.from(arguments)])
   }
 }
+
+function sayHi() {
+  console.log('hi', this.name)
+  console.log(Array.from(arguments))
+}
+const obj = {
+  name: 'ljt',
+}
+sayHi.bind(obj, 1, 2, 3)()
