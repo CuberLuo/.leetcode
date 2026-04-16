@@ -8,24 +8,24 @@
 /**
  * @param {number} capacity
  */
-var LRUCache = function (capacity) {
-  this.cache = new Map()
-  this.capacity = capacity
+var LRUCache = function(capacity) {
+    this.cache=new Map()
+    this.capacity=capacity
 };
 
 /** 
  * @param {number} key
  * @return {number}
  */
-LRUCache.prototype.get = function (key) {
-  if (!this.cache.has(key)) {
-    return -1
-  }
-  // 有key则先删除再重新添加
-  const val = this.cache.get(key)
-  this.cache.delete(key)
-  this.cache.set(key, val)
-  return val
+LRUCache.prototype.get = function(key) {
+    if(!this.cache.has(key)){
+      return -1
+    }
+    // 有key先删除后添加
+    const value = this.cache.get(key)
+    this.cache.delete(key)
+    this.cache.set(key, value)
+    return value
 };
 
 /** 
@@ -33,20 +33,20 @@ LRUCache.prototype.get = function (key) {
  * @param {number} value
  * @return {void}
  */
-LRUCache.prototype.put = function (key, value) {
-  if (this.cache.has(key)) {
-    this.cache.delete(key)
-  } else {
-    // 先检查缓存容量是否达到上限
-    if (this.cache.size >= this.capacity) {
-      const oldKey = this.cache.keys().next().value
-      this.cache.delete(oldKey)
+LRUCache.prototype.put = function(key, value) {
+    if(!this.cache.has(key)){
+      // 添加key之前检查容量是否达到上限
+      if(this.cache.size >= this.capacity){
+        const oldKey = this.cache.keys().next().value
+        this.cache.delete(oldKey)
+      }
+    }else{
+      this.cache.delete(key)
     }
-  }
-  this.cache.set(key, value)
+    this.cache.set(key, value)
 };
 
-/**
+/** 
  * Your LRUCache object will be instantiated and called as such:
  * var obj = new LRUCache(capacity)
  * var param_1 = obj.get(key)
