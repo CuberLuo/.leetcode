@@ -7,7 +7,7 @@ function currying(fn) {
       return fn(...args)
     }
     // 参数不够继续收集参数
-    return (...next) => curried(...args, ...next)
+    return (...newArgs) => curried(...args, ...newArgs)
   }
 }
 
@@ -20,8 +20,8 @@ console.log(currying(add)(1, 2))
 
 // 函数反柯里化
 function uncurrying(fn) {
-  return function (...args) {
-    return fn.call(...args)
+  return function (ctx, ...args) {
+    return fn.apply(ctx, args)
   }
 }
 // test

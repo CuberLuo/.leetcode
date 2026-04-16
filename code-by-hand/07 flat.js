@@ -1,6 +1,6 @@
 Array.prototype.myFlat = function (maxDepth = 1) {
   if (maxDepth <= 0) return this
-  let result = []
+  const result = []
   this.forEach((item) => {
     if (Array.isArray(item)) {
       result.push(...item.myFlat(maxDepth - 1))

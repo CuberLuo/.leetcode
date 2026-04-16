@@ -14,4 +14,5 @@ function sayHi() {
   console.log(Array.from(arguments))
 }
 
-sayHi.myCall(obj, 1, 2, 3)
+sayHi.myCall(obj, 1, 2, 3) //obj临时调用sayHi
+//obj相当于ctx，sayHi相当于this
