@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS 文字截断</title>
+    <style>
+      .box {
+        width: 300px;
+        margin: 30px;
+        /* line-height: 1.5; */
+      }
+
+      /* 单行文字截断⭐ */
+      .single-line {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* 多行文字截断（3行）⭐ */
+      .multi-line {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h3>单行文字截断：</h3>
+      <div class="single-line">
+        这里是一段非常长的文字内容，用来测试单行溢出省略号效果，超出宽度自动显示...
+      </div>
+
+      <h3>多行文字截断（3行）：</h3>
+      <div class="multi-line">
+        这里是一段非常长的文字，用来测试多行文本溢出显示省略号。
+        这是第二行内容，继续写很多很多字，让它自动换行。
+        这是第三行，再往后的内容就会被截断，并且结尾显示...
+        这是第四行及以后，本来会显示，但现在被截断看不见了。
+      </div>
+    </div>
+  </body>
+</html>
