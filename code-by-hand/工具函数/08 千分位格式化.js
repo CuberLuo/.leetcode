@@ -16,4 +16,10 @@ function formatNumber(num) {
   return (isNegative ? '-' : '') + result + (isDec ? '.' + dec : '')
 }
 
+
+function formatNumberApi(num) {
+  return num.toLocaleString('en-US')
+}
+
 console.log(formatNumber(1110.5))
+console.log(formatNumberApi(-12345678.999))
