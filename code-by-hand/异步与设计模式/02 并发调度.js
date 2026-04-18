@@ -1,10 +1,11 @@
 class Scheduler {
   #parallelCnt
-  #tasks = []
   #runningCnt = 0
+  #tasks = []//任务队列
   constructor(parallelCnt) {
     this.#parallelCnt = parallelCnt
   }
+  // 传入的task是一个回调函数
   add(task) {
     return new Promise((resolve, reject) => {
       this.#tasks.push({ task, resolve, reject })
@@ -14,13 +15,14 @@ class Scheduler {
   #run() {
     while (this.#runningCnt < this.#parallelCnt && this.#tasks.length > 0) {
       const { task, resolve, reject } = this.#tasks.shift()
+      this.#runningCnt++
       task()
-        .then(resolve, reject)
+        .then(resolve)
+        .catch(reject)
         .finally(() => {
           this.#runningCnt--
           this.#run() //继续执行下一个任务
         })
-      this.#runningCnt++
     }
   }
 }
