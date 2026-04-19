@@ -1,20 +1,18 @@
 function sortVersions(versions, isAsc = true) {
-  return [...versions].sort((a, b) => {
-    // 1. 转数字数组
-    const arrA = a.split('.').map(Number);
-    const arrB = b.split('.').map(Number);
+  return versions.sort((a, b) => {
+    const arrA = a.split('.').map(Number)
+    const arrB = b.split('.').map(Number)
 
-    // 2. 取最大长度，逐位对比
-    const maxLen = Math.max(arrA.length, arrB.length);
+    const maxLen = Math.max(arrA.length, arrB.length)
     for (let i = 0; i < maxLen; i++) {
-      const numA = arrA[i] || 0; // 不足位补0
-      const numB = arrB[i] || 0;
+      const numA = arrA[i] || 0 // 不足位补0
+      const numB = arrB[i] || 0
 
-      if (numA !== numB) {
-        // 升序：numA - numB；降序：numB - numA
-        return isAsc ? numA - numB : numB - numA;
-      }
+      if (numA === numB) continue
+      return isAsc ? numA - numB : numB - numA
     }
-    return 0;
-  });
+    return 0//两个版本号相等则返回0
+  })
 }
+
+console.log(sortVersions(['1.20.1', '1.20.2', '1.8', '1.8', '1.12']))
