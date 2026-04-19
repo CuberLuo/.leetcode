@@ -13,20 +13,19 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  let k = m + n - 1 // 指向合并后数组的最后一个位置
-  let i = m - 1 // 指向nums1有效元素的最后一个位置
-  let j = n - 1 // 指向nums2有效元素的最后一个位置
-
-  // 当nums2还有元素需要合并时
-  while (j >= 0) {
-    if (i >= 0 && nums1[i] > nums2[j]) {
-      nums1[k] = nums1[i]
-      i--
-    } else {
-      nums1[k] = nums2[j]
-      j--
-    }
-    k--
+  const a = nums1.slice(0, m)
+  const b = nums2.slice(0, n)
+  const mergedArr = mergeFn(a, b)
+  for (let i = 0; i < mergedArr.length; i++) {
+    nums1[i] = mergedArr[i]
   }
+};
+
+function mergeFn(a, b) {
+  if (a.length === 0) return b
+  else if (b.length === 0) return a
+  if (a[0] < b[0]) return [a[0], ...mergeFn(a.slice(1), b)]
+  else return [b[0], ...mergeFn(a, b.slice(1))]
 }
 // @lc code=end
+
