@@ -8,7 +8,7 @@
 function repeatFn(func, times, wait) {
   function execute(times) {
     if (times <= 0) return
-    return new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       setTimeout(() => {
         func()
         resolve()
