@@ -10,6 +10,7 @@
  * @return {number}
  */
 var numSquares = function (n) {
+  // dp[i]表示数字i最少需要的平方数个数
   const dp = new Array(n + 1).fill(Infinity)
   dp[0] = 0
   for (let i = 1; i <= n; i++) {
