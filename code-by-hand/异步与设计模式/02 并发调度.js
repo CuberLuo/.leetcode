@@ -1,7 +1,7 @@
 class Scheduler {
   #parallelCnt
   #runningCnt = 0
-  #tasks = []//任务队列
+  #tasks = [] //任务队列
   constructor(parallelCnt) {
     this.#parallelCnt = parallelCnt
   }
@@ -27,7 +27,7 @@ class Scheduler {
   }
 }
 
-const timeout = (time) => {
+const fn = (time) => {
   return new Promise((resolve) => {
     setTimeout(resolve, time)
   })
@@ -38,9 +38,7 @@ const scheduler = new Scheduler(MAX_LENGTH)
 
 const addTask = (time, order) => {
   scheduler
-    .add(() => {
-      return timeout(time)
-    })
+    .add(() => fn(time))
     .then(() => {
       console.log('任务', order, '已完成')
     })
