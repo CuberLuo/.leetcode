@@ -4,7 +4,7 @@ const maxWeight = 8 // 背包最大承重
 
 // dp[i][j]：前i个物品，容量j的最大价值
 const n = weights.length
-const dp = new Array(n).fill(0).map(() => {
+const dp = new Array(n + 1).fill(0).map(() => {
   return new Array(maxWeight + 1).fill(0)
 })
 
