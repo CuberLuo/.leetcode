@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function setPreciseTimeout(callback, interval) {
+        let startTime = performance.now()
+        let rafId
+        ;(function tick() {
+          const nowTime = performance.now()
+          if (nowTime - startTime >= interval) {
+            callback()
+            cancelAnimationFrame(rafId)
+            return
+          }
+          rafId = requestAnimationFrame(tick)
+        })()
+      }
+
+      setPreciseTimeout(() => {
+        console.log('精准计时触发')
+      }, 1000)
+    </script>
+  </head>
+  <body></body>
+</html>
