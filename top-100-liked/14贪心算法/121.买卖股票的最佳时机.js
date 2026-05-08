@@ -10,19 +10,19 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-    let maxprofit = 0
-    let minprice = 1e4
-    for (let i = 0; i < prices.length; i++) {
-        if (prices[i] < minprice) {
-            minprice = prices[i]
-        } else if (prices[i] - minprice > maxprofit) {
-            maxprofit = prices[i] - minprice
-        }
+  let maxPt = 0
+  let minPrice = Infinity
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < minPrice) {
+      minPrice = prices[i]
+    } else {
+      const currentPt = prices[i] - minPrice
+      maxPt = Math.max(currentPt, maxPt)
     }
-    return maxprofit
-};
+  }
+  return maxPt
+}
 // @lc code=end
-console.log(maxProfit([7, 1, 5, 3, 6, 4]))
-console.log(maxProfit([7, 6, 4, 3, 1]))
-console.log(maxProfit([1, 2]))
-
+console.log(maxProfit([7, 1, 5, 3, 6, 4])) //5
+console.log(maxProfit([7, 6, 4, 3, 1])) //0
+console.log(maxProfit([1, 2])) //1
