@@ -19,23 +19,12 @@ var romanToInt = function (s) {
     C: 100,
     D: 500,
     M: 1000,
-    IV: 4,
-    IX: 9,
-    XL: 40,
-    XC: 90,
-    CD: 400,
-    CM: 900,
   }
-  let i = 0
-  while (i < s.length) {
-    let subStr = ''
-    if (i < s.length - 1) subStr = s.slice(i, i + 2)
-    if (map[subStr]) {
-      num += map[subStr]
-      i += 2
+  for (let i = 0; i < s.length; i++) {
+    if (i !== s.length - 1 && map[s[i]] < map[s[i + 1]]) {
+      num -= map[s[i]]
     } else {
       num += map[s[i]]
-      i += 1
     }
   }
   return num
