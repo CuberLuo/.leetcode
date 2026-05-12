@@ -18,7 +18,6 @@ var combine = function (n, k) {
       return
     }
     for (let i = startIndex; i <= n; i++) {
-      if (path.includes(i)) continue
       path.push(i)
       backtrack(i + 1, path)
       path.pop()
