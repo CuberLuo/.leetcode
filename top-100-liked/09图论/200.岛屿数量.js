@@ -10,7 +10,7 @@
  * @return {number}
  */
 var numIslands = function (grid) {
-  function setZero(i, j) {
+  const setZero = (i, j) => {
     // 超出边界或者遇到0则递归结束
     if (grid[i] === undefined || grid[i][j] === undefined || grid[i][j] === '0') {
       return
@@ -34,7 +34,7 @@ var numIslands = function (grid) {
     }
   }
   return cnt
-};
+}
 // @lc code=end
 
 // const grid = [
@@ -45,11 +45,10 @@ var numIslands = function (grid) {
 // ]
 // console.log(grid[1][-1])//越界元素是undefined
 
-
 const grid = [
   ['1', '1', '0', '0', '0'],
   ['1', '1', '0', '0', '0'],
   ['0', '0', '1', '0', '0'],
-  ['0', '0', '0', '1', '1']
+  ['0', '0', '0', '1', '1'],
 ]
 console.log(numIslands(grid))
