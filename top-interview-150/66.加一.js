@@ -10,12 +10,14 @@
  * @return {number[]}
  */
 var plusOne = function (digits) {
+  let i = digits.length - 1
   let carry = 0
-  for (let i = digits.length - 1; i >= 0; i--) {
-    if (i === digits.length - 1) digits[i] = digits[i] + 1
-    else digits[i] = digits[i] + carry
+  while (i >= 0) {
+    if (i === digits.length - 1) digits[i] += 1
+    else digits[i] += carry
     carry = Math.floor(digits[i] / 10)
-    digits[i] = digits[i] % 10
+    digits[i] %= 10
+    i--
   }
   if (carry !== 0) digits.unshift(carry)
   return digits
