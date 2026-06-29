@@ -17,8 +17,7 @@ var merge = function (intervals) {
     const lastInterval = result[result.length - 1]
     // 有重叠
     if (curInterval[0] <= lastInterval[1]) {
-      if (curInterval[1] > lastInterval[1])
-        lastInterval[1] = curInterval[1]
+      lastInterval[1] = Math.max(lastInterval[1], curInterval[1])
     } else {
       result.push(curInterval)
     }
