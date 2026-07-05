@@ -5,13 +5,11 @@
  */
 
 // @lc code=start
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
+
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val)
+  this.next = (next === undefined ? null : next)
+}
 /**
  * @param {ListNode} head
  * @return {ListNode}
@@ -30,3 +28,27 @@ var reverseList = function (head) {
 };
 // @lc code=end
 
+function createList(arr) {
+  if (arr.length === 0) return null
+  let dummy = new ListNode()
+  let p = dummy
+  for (const val of arr) {
+    p.next = new ListNode(val)
+    p = p.next
+  }
+  return dummy.next
+}
+
+function listToArr(head) {
+  const res = []
+  let p = head
+  while (p !== null) {
+    res.push(p.val)
+    p = p.next
+  }
+  return res
+}
+
+const head = createList([1, 2, 3, 4, 5])
+const reverseHead = reverseList(head)
+console.log(listToArr(reverseHead))
