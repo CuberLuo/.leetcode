@@ -10,21 +10,19 @@
  * @return {number}
  */
 var removeDuplicates = function (nums) {
-    let i = 2, j = 2
-    while (j < nums.length) {
-        if (nums[j] !== nums[i - 2]) {
-            nums[i] = nums[j]
-            i++
-        }
-        j++
+  let i = 2
+  for (let j = 2; j < nums.length; j++) {
+    if (nums[j] !== nums[i - 2]) {
+      nums[i] = nums[j]
+      i++
     }
-    return i
-
+  }
+  return i
 };
 // @lc code=end
 
-nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]
+const nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]
 const len = removeDuplicates(nums)
 for (let i = 0; i < len; i++) {
-    console.log(nums[i])
+  console.log(nums[i])
 }
