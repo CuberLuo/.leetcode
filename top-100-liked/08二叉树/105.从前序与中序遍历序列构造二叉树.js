@@ -5,14 +5,11 @@
  */
 
 // @lc code=start
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
+function TreeNode(val, left, right) {
+  this.val = (val === undefined ? 0 : val)
+  this.left = (left === undefined ? null : left)
+  this.right = (right === undefined ? null : right)
+}
 /**
  * @param {number[]} preorder
  * @param {number[]} inorder
@@ -36,3 +33,32 @@ var buildTree = function (preorder, inorder) {
 };
 // @lc code=end
 
+
+const levelOrder = (root) => {
+  if (root === null) return []
+  const result = []
+  const queue = [root]
+
+  while (queue.length > 0) {
+    const curSize = queue.length
+    for (let i = 0; i < curSize; i++) {
+      const node = queue.shift()
+      if (node) {
+        result.push(node.val)
+        queue.push(node.left)
+        queue.push(node.right)
+      } else {
+        result.push(null)
+      }
+    }
+  }
+
+  // 截掉末尾连续null
+  let lastValid = result.findLastIndex(v => v !== null)
+  return result.slice(0, lastValid + 1)
+}
+
+const preorder = [3, 9, 20, 15, 7]
+const inorder = [9, 3, 15, 20, 7]
+const root = buildTree(preorder, inorder)
+console.log(levelOrder(root))
