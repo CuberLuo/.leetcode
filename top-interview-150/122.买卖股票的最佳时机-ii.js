@@ -10,13 +10,15 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let profit = 0
+  let maxPt = 0
   for (let i = 1; i < prices.length; i++) {
+    // 上涨的利润全部累加
     if (prices[i] > prices[i - 1]) {
-      profit += prices[i] - prices[i - 1]
+      const curPt = prices[i] - prices[i - 1]
+      maxPt += curPt
     }
   }
-  return profit
+  return maxPt
 }
 // @lc code=end
 

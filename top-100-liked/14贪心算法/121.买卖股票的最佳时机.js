@@ -10,14 +10,14 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
+  let minPrice = prices[0]
   let maxPt = 0
-  let minPrice = Infinity
-  for (let i = 0; i < prices.length; i++) {
-    if (prices[i] < minPrice) {
-      minPrice = prices[i]
-    } else {
-      const currentPt = prices[i] - minPrice
-      maxPt = Math.max(currentPt, maxPt)
+  for (const price of prices) {
+    // 当前价格比最低价低则更新利润
+    if (price < minPrice) minPrice = price
+    else {
+      const curPt = price - minPrice
+      if (curPt > maxPt) maxPt = curPt
     }
   }
   return maxPt
